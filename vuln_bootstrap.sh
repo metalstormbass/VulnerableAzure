@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Update and download docker
-until sudo  apt-get -y install docker.io;do
+until sudo apt-get update && sudo  apt-get -y install docker.io;do
     sleep 1
 done
 
