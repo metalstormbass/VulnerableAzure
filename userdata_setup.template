@@ -1,0 +1,6 @@
+#!/bin/bash
+# Set Variables we need in the userdata logic
+name='${name}'
+token='${token}'
+# Output the logic that we will use for UserData or CustomData
+${logic}
