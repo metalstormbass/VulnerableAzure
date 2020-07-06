@@ -5,7 +5,6 @@ data "template_file" "userdata_setup" {
 
   vars  = {
     name       = "${var.username}"
-    token     = "${var.token}"
     logic = "${file("vuln_bootstrap.sh")}"
   }
 }
