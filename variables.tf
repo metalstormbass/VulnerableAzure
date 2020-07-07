@@ -46,6 +46,7 @@ variable "blob-internal-private-ip" {
 variable "source-ip" {
   type        = string
   description = "Only IP Address to access Vulnerable Web App"
+  default     = "0.0.0.0/0"
 }
 
 
