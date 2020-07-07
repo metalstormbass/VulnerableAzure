@@ -15,7 +15,7 @@ resource "azurerm_storage_container" "victim-public-container" {
 }
 
 resource "azurerm_storage_blob" "victim-public-blob" {
-  name                   = "${var.victim_company}""
+  name                   = "${var.victim_company}"
   storage_account_name   = azurerm_storage_account.victim-public-storage.name
   storage_container_name = azurerm_storage_container.victim-public-container.name
   type                   = "Block"
