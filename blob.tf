@@ -1,7 +1,7 @@
 #Exposed Public Blob
 
 resource "azurerm_storage_account" "victim-public-storage" {
-  name                     = "victimpublicstorageaccount"
+  name                     = "victimpublicstorageacc"
   resource_group_name      = azurerm_resource_group.victim-network-rg.name
   location                 = azurerm_resource_group.victim-network-rg.location
   account_tier             = "Standard"
