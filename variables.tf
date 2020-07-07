@@ -15,7 +15,7 @@ variable "location" {
 }
 
 
-##################### Azure Networking ################
+##################### Azure Networking #################
 # victim vnet cidr
 variable "victim-network-vnet-cidr" {
   type        = string
@@ -40,7 +40,16 @@ variable "blob-internal-private-ip" {
   description = "Blob Private IP"
 }
 
-##################### Azure VM #####################
+##################### Secure Access #####################
+
+# Source IP
+variable "source-ip" {
+  type        = string
+  description = "Only IP Address to access Vulnerable Web App"
+}
+
+
+##################### Azure VM ##########################
 
 # environment
 variable "environment" {
