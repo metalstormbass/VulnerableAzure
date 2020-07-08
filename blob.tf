@@ -34,7 +34,7 @@ resource "azurerm_storage_account" "victim-private-storage" {
   
    network_rules {
     default_action             = "Allow"
-    ip_rules                   = ["azurerm_network_interface.vuln-ubuntu.ip_configuration.private_ip_address"]
+    #ip_rules                   = ["azurerm_network_interface.vuln-ubuntu.ip_configuration.private_ip_address"]
     virtual_network_subnet_ids = ["azurerm_subnet.victim-network-subnet.id"]
   }
 
