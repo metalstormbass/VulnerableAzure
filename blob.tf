@@ -19,5 +19,5 @@ resource "azurerm_storage_blob" "victim-public-blob" {
   storage_account_name   = azurerm_storage_account.victim-public-storage.name
   storage_container_name = azurerm_storage_container.victim-public-container.name
   type                   = "Block"
-  source                 = "/files/personalinformation.zip"
+  source                 = "files/personalinformation.zip"
 }
