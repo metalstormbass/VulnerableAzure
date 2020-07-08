@@ -15,7 +15,7 @@ resource "azurerm_storage_container" "victim-public-container" {
 }
 
 resource "azurerm_storage_blob" "victim-public-blob" {
-  name                   = "$test.zip"
+  name                   = "test.zip"
   storage_account_name   = azurerm_storage_account.victim-public-storage.name
   storage_container_name = azurerm_storage_container.victim-public-container.name
   type                   = "Block"
@@ -33,14 +33,14 @@ resource "azurerm_storage_account" "victim-public-storage" {
   account_replication_type = "LRS"
 }
 
-resource "azurerm_storage_container" "victim-public-container" {
+resource "azurerm_storage_container" "victim-private-container" {
   name                  = "${var.vulnvm-name}-backend"
   storage_account_name  = azurerm_storage_account.victim-public-storage.name
   container_access_type = "private"
 }
 
-resource "azurerm_storage_blob" "victim-public-blob" {
-  name                   = "$test.zip"
+resource "azurerm_storage_blob" "victim-private-blob" {
+  name                   = "secrets.txt"
   storage_account_name   = azurerm_storage_account.victim-public-storage.name
   storage_container_name = azurerm_storage_container.victim-public-container.name
   type                   = "Block"
