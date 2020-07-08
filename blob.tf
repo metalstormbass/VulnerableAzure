@@ -35,7 +35,7 @@ resource "azurerm_storage_account" "victim-private-storage" {
    network_rules {
     default_action             = "allow"
     ip_rules                   = ["$var.internal-private-ip"]
-    virtual_network_subnet_ids = azurerm_subnet.victim-network-subnet.id
+    virtual_network_subnet_ids = ["azurerm_subnet.victim-network-subnet.id"]
   }
 
 
