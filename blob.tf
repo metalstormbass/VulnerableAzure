@@ -33,7 +33,7 @@ resource "azurerm_storage_account" "victim-private-storage" {
   account_replication_type = "LRS"
   
    network_rules {
-    default_action             = "allow"
+    default_action             = "Allow"
     ip_rules                   = ["$var.internal-private-ip"]
     virtual_network_subnet_ids = ["azurerm_subnet.victim-network-subnet.id"]
   }
