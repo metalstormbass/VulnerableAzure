@@ -42,7 +42,7 @@ resource "azurerm_storage_account" "victim-private-storage" {
 }
 
 resource "azurerm_storage_container" "victim-private-container" {
-  name                  = "${var.vulnvm-name}-backend"
+  name                  = "victim-backend"
   storage_account_name  = azurerm_storage_account.victim-private-storage.name
   container_access_type = "private"
 }
