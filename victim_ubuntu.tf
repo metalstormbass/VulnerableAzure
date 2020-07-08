@@ -27,7 +27,7 @@ resource "azurerm_network_interface" "vuln-ubuntu" {
   }
 }
 
-#Associate Security Group with Internface
+#Associate Security Group with Interface
 
 resource "azurerm_network_interface_security_group_association" "victim-linux-nsg-int" {
   network_interface_id      = azurerm_network_interface.vuln-ubuntu.id
