@@ -26,4 +26,5 @@ resource "azurerm_subnet" "victim-network-subnet" {
   address_prefix       = var.victim-network-subnet-cidr
   virtual_network_name = azurerm_virtual_network.victim-network-vnet.name
   resource_group_name  = azurerm_resource_group.victim-network-rg.name
+  service_endpoints = ["Microsoft.Storage"]
 }

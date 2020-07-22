@@ -42,7 +42,7 @@ variable "blob-internal-private-ip" {
 
 ##################### Secure Access #####################
 
-# Source IP
+# Source IP - CHANGE THIS
 variable "source-ip" {
   type        = string
   description = "Only IP Address to access Vulnerable Web App"
