@@ -6,13 +6,13 @@ until sudo apt-get update && sudo  apt-get -y install docker.io;do
 done
 
 # Pull Juice Repository
-until sudo docker pull vulnerables/web-dvwa;do
+until sudo docker pull webgoat/webgoat-8.0;do
     sleep 1
 done
 
 # Start Docker
 
-sudo docker run --rm -it -p 80:80 vulnerables/web-dvwa
+sudo docker run --rm -it -p 80:80 webgoat/webgoat-8.0
 
 
 
