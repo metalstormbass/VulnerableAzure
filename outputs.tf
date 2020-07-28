@@ -5,7 +5,7 @@ output "Vulnerable_VM_IP" {
 }
 
 
-output "Company_Name(Could be useful for enumeration)" {
-    value = azurerm_public_ip.vulnpublicip.ip_address
+output "Company_Name" {
+    value = var.victim_company
 }
 
