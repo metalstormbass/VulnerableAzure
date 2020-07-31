@@ -27,7 +27,7 @@ done
 ip_address=$(dig +short myip.opendns.com @resolver1.opendns.com)
 
 # Modify Nginx Config to allow access to Vulnerable Web App
-sudo python3 $dir/VulnerableWebApp/VulnerableWebApp/manage.py runserver
+
 
 sudo touch /etc/nginx/conf.d/VulnerableWebApp.conf
 
@@ -47,3 +47,5 @@ EOT
 sudo service nginx restart
 sleep 2
 sudo nginx -s reload
+
+sudo python3 $dir/VulnerableWebApp/VulnerableWebApp/manage.py runserver
