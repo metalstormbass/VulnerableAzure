@@ -48,4 +48,5 @@ sudo service nginx restart
 sleep 2
 sudo nginx -s reload
 
-sudo python3 $dir/VulnerableWebApp/VulnerableWebApp/manage.py runserver
+sudo python3 $dir/VulnerableWebApp/VulnerableWebApp/manage.py runserver &
+
