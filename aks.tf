@@ -1,6 +1,6 @@
 #Provision AKS cluster in Azure
 
-resource "azurerm_kubernetes_cluster" "vuln_cluster" {
+resource "azurerm_kubernetes_cluster" "vuln_k8_cluster" {
   name                = "${var.vulnvm-name}-kubecluster"
   location            = azurerm_resource_group.victim-network-rg.location
   resource_group_name = azurerm_resource_group.victim-network-rg.name
@@ -29,15 +29,6 @@ resource "azurerm_kubernetes_cluster" "vuln_cluster" {
 
 #Perform Configuration on K8 cluster itself
 
-#Provider for K8, used after built
-provider "kubernetes" {
-  host                   = "${azurerm_kubernetes_cluster.main.kube_config.0.host}"
-  username               = "${azurerm_kubernetes_cluster.main.kube_config.0.username}"
-  password               = "${azurerm_kubernetes_cluster.main.kube_config.0.password}"
-  client_certificate     = "${base64decode(azurerm_kubernetes_cluster.main.kube_config.0.client_certificate)}"
-  client_key             = "${base64decode(azurerm_kubernetes_cluster.main.kube_config.0.client_key)}"
-  cluster_ca_certificate = "${base64decode(azurerm_kubernetes_cluster.main.kube_config.0.cluster_ca_certificate)}"
-}
 
 
 resource "kubernetes_namespace" "vuln-k8" {
