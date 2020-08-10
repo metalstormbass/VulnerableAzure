@@ -1,8 +1,17 @@
+provider "kubernetes" {
+  load_config_file       = "false"
+  host                   = azurerm_kubernetes_cluster.vuln_cluster.endpoint
+  token                  = azurerm_kubernetes_cluster.vuln_cluster.kube_config.password
+}
+
+
+#Provision AKS cluster in Azure
+
 resource "azurerm_kubernetes_cluster" "vuln_cluster" {
   name                = "${var.vulnvm-name}-kubecluster"
   location            = azurerm_resource_group.victim-network-rg.location
   resource_group_name = azurerm_resource_group.victim-network-rg.name
-  dns_prefix          = "${var.vulnvm-name}"
+  dns_prefix          = "${var.vulnvm-name}-k8"
 
   default_node_pool {
     name       = "default"
@@ -14,8 +23,6 @@ resource "azurerm_kubernetes_cluster" "vuln_cluster" {
     type = "SystemAssigned"
   }
 
-  }
-
   network_profile {
     network_plugin     = "calico"
     network_policy     = "calico"     # Options are calico or azure - only if network plugin is set to azure
@@ -24,9 +31,10 @@ resource "azurerm_kubernetes_cluster" "vuln_cluster" {
     service_cidr       = "172.16.0.0/16" # Must not overlap any address from the VNEt
   }
 
+
+  kube_config{
+  password = var.password
+  }
 }
 
 
-output "kube_config" {
-  value = azurerm_kubernetes_cluster.example.kube_config_raw
-}
