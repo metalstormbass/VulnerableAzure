@@ -1,3 +1,4 @@
+#Provider for K8, used after built
 provider "kubernetes" {
   load_config_file       = "false"
   host                   = azurerm_kubernetes_cluster.vuln_cluster.endpoint
@@ -24,17 +25,13 @@ resource "azurerm_kubernetes_cluster" "vuln_cluster" {
   }
 
   network_profile {
-    network_plugin     = "calico"
+    network_plugin     = "azure"
     network_policy     = "calico"     # Options are calico or azure - only if network plugin is set to azure
     dns_service_ip     = "172.16.0.10" # Required when network plugin is set to azure, must be in the range of service_cidr and above 1
     docker_bridge_cidr = "172.17.0.1/16"
     service_cidr       = "172.16.0.0/16" # Must not overlap any address from the VNEt
   }
-
-
-  kube_config{
-  password = var.password
-  }
 }
 
 
+#Perform Configuration on K8 cluster itself
