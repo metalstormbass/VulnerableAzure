@@ -10,8 +10,8 @@ output "Company_Name" {
 }
 
 output "K8-fqdn" {
-  value = azurerm_kubernetes_cluster.vuln_cluster.fqdn
+  value = azurerm_kubernetes_cluster.vuln_k8_cluster.fqdn
 }
 output "kube_config" {
-  value = azurerm_kubernetes_cluster.vuln_cluster.kube_config_raw
+  value = azurerm_kubernetes_cluster.vuln_k8_cluster.kube_config_raw
 }
