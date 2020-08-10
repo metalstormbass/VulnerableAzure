@@ -1,11 +1,3 @@
-#Provider for K8, used after built
-provider "kubernetes" {
-  load_config_file       = "false"
-  host                   = azurerm_kubernetes_cluster.vuln_cluster.endpoint
-  token                  = azurerm_kubernetes_cluster.vuln_cluster.kube_config.password
-}
-
-
 #Provision AKS cluster in Azure
 
 resource "azurerm_kubernetes_cluster" "vuln_cluster" {
@@ -36,3 +28,82 @@ resource "azurerm_kubernetes_cluster" "vuln_cluster" {
 
 
 #Perform Configuration on K8 cluster itself
+
+#Provider for K8, used after built
+provider "kubernetes" {
+  host                   = "${azurerm_kubernetes_cluster.main.kube_config.0.host}"
+  username               = "${azurerm_kubernetes_cluster.main.kube_config.0.username}"
+  password               = "${azurerm_kubernetes_cluster.main.kube_config.0.password}"
+  client_certificate     = "${base64decode(azurerm_kubernetes_cluster.main.kube_config.0.client_certificate)}"
+  client_key             = "${base64decode(azurerm_kubernetes_cluster.main.kube_config.0.client_key)}"
+  cluster_ca_certificate = "${base64decode(azurerm_kubernetes_cluster.main.kube_config.0.cluster_ca_certificate)}"
+}
+
+
+resource "kubernetes_namespace" "vuln-k8" {
+  metadata {
+    name                   = "vuln-k8"
+  }
+}
+
+
+resource "kubernetes_deployment" "vuln-k8-deployment" {
+  metadata {
+    name                   = "vuln-k8"
+    namespace              = "vuln-k8"
+    labels                 = {
+      app                  = "vuln-k8"
+    }
+  }
+
+  spec {
+    replicas               = 2
+
+    selector {
+      match_labels         = {
+        app                = "vuln-k8"
+      }
+    }
+
+    template {
+      metadata {
+        labels             = {
+          app              = "vuln-k8"
+        }
+      }
+
+      spec {
+        container {
+          image            = "yonatanph/logicdemo:latest"
+          name             = "user-app"
+          port {
+            container_port = "80"
+          }
+          security_context {
+            capabilities {
+              add          = ["SYS_ADMIN"]
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+resource "kubernetes_service" "vuln-k8-service" {
+  metadata {
+    name                   = "vuln-k8"
+    namespace              = "vuln-k8"
+  }
+  spec {
+    selector               = {
+      app                  = "vuln-k8"
+    }
+    port {
+      port                 = 80
+    }
+
+    type                   = "LoadBalancer"
+  }
+}
+
