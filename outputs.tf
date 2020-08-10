@@ -9,3 +9,6 @@ output "Company_Name" {
     value = var.victim_company
 }
 
+output "K8-fqdn" {
+  value = azurerm_kubernetes_cluster.vuln_cluster.fqdn
+}

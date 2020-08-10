@@ -77,3 +77,10 @@ variable "password" {
   description = "Password"
 }
 
+################## K8 ##################################
+
+#Nodes
+variable "nodecount" {
+  type        = string
+  description = "Kubernetes Node Count"
+}

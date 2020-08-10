@@ -1,0 +1,32 @@
+resource "azurerm_kubernetes_cluster" "vuln_cluster" {
+  name                = "${var.vulnvm-name}-kubecluster"
+  location            = azurerm_resource_group.victim-network-rg.location
+  resource_group_name = azurerm_resource_group.victim-network-rg.name
+  dns_prefix          = "${var.vulnvm-name}"
+
+  default_node_pool {
+    name       = "default"
+    node_count = var.nodecount
+    vm_size    = "Standard_D2_v2"
+  }
+
+  identity {
+    type = "SystemAssigned"
+  }
+
+  }
+
+  network_profile {
+    network_plugin     = "calico"
+    network_policy     = "calico"     # Options are calico or azure - only if network plugin is set to azure
+    dns_service_ip     = "172.16.0.10" # Required when network plugin is set to azure, must be in the range of service_cidr and above 1
+    docker_bridge_cidr = "172.17.0.1/16"
+    service_cidr       = "172.16.0.0/16" # Must not overlap any address from the VNEt
+  }
+
+}
+
+
+output "kube_config" {
+  value = azurerm_kubernetes_cluster.example.kube_config_raw
+}
