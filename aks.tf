@@ -20,10 +20,11 @@ resource "azurerm_kubernetes_cluster" "vuln_cluster" {
     vm_size    = "Standard_D2_v2"
   }
 
-  identity {
-    type = "SystemAssigned"
+ service_principal {
+    client_id     = var.client_id
+    client_secret = var.client_secret
   }
-
+  
   network_profile {
     network_plugin     = "azure"
     network_policy     = "calico"     # Options are calico or azure - only if network plugin is set to azure

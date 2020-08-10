@@ -84,3 +84,14 @@ variable "nodecount" {
   type        = string
   description = "Kubernetes Node Count"
 }
+
+#Client ID from Azure
+variable "client_id" {
+  type        = string
+  description = "Client ID from Azure for K8"
+}
+
+variable "client_secret" {
+  type        = string
+  description = "Client secret from Azure for K8"
+}
