@@ -29,7 +29,7 @@ resource "azurerm_kubernetes_cluster" "vuln_k8_cluster" {
 
 #Perform Configuration on K8 cluster itself
 
-
+/*
 
 resource "kubernetes_namespace" "vuln-k8" {
   metadata {
@@ -98,3 +98,4 @@ resource "kubernetes_service" "vuln-k8-service" {
   }
 }
 
+*/
