@@ -96,7 +96,7 @@ resource "kubernetes_deployment" "vuln-k8-deployment" {
 
 }
 
-/*
+
 resource "kubernetes_service" "vuln-k8-service" {
   metadata {
     name                   = "vuln-k8"
@@ -115,6 +115,8 @@ resource "kubernetes_service" "vuln-k8-service" {
 }
 
 
+
+/*
 resource "kubernetes_pod" "vuln-k8-deployment" {
   metadata {
     name = "vuln-k8-deployment"
@@ -155,4 +157,5 @@ resource "kubernetes_service" "vuln-k8-service" {
     type = "LoadBalancer"
   }
 }
+
 */
