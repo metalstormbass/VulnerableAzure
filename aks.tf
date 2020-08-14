@@ -54,7 +54,7 @@ resource "kubernetes_pod" "vuln-k8-deployment" {
   metadata {
     name = "vuln-k8-deployment"
 
-    labels {
+    labels = {
       name = "vuln-k8-deployment"
     }
 
