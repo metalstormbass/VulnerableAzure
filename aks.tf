@@ -45,7 +45,7 @@ provider "kubernetes" {
 
 resource "kubernetes_namespace" "vuln-k8" {
   metadata {
-    name                   = "${vuln-k8}"
+    name                   = "vulnk8"
   }
 }
 
