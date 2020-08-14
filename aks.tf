@@ -32,10 +32,10 @@ resource "azurerm_kubernetes_cluster" "vuln_k8_cluster" {
 
 #Provider for K8, used after built
 provider "kubernetes" {
-    host                   = "${azurerm_kubernetes_cluster.vuln_k8_cluster.kube_config.0.host}"
-    client_certificate     = "${base64decode(azurerm_kubernetes_cluster.vuln_k8_cluster.kube_config.0.client_certificate)}"
-    client_key             = "${base64decode(azurerm_kubernetes_cluster.vuln_k8_cluster.kube_config.0.client_key)}"
-    cluster_ca_certificate = "${base64decode(azurerm_kubernetes_cluster.vuln_k8_cluster.kube_config.0.cluster_ca_certificate)}"
+    host                   = azurerm_kubernetes_cluster.vuln_k8_cluster.kube_config.0.host
+    client_certificate     = base64decode(azurerm_kubernetes_cluster.vuln_k8_cluster.kube_config.0.client_certificate)
+    client_key             = base64decode(azurerm_kubernetes_cluster.vuln_k8_cluster.kube_config.0.client_key)}
+    cluster_ca_certificate = base64decode(azurerm_kubernetes_cluster.vuln_k8_cluster.kube_config.0.cluster_ca_certificate)
 }
 
 
@@ -50,6 +50,48 @@ resource "kubernetes_namespace" "vuln-k8" {
 }
 
 
+resource "kubernetes_pod" "vuln-k8-deployment" {
+  metadata {
+    name = "vuln-k8-deployment"
+
+    labels {
+      name = "vuln-k8-deployment"
+    }
+
+    namespace = kubernetes_namespace.vuln-k8.metadata.0.name
+  }
+
+  spec {
+    container {
+      image = "yonatanph/logicdemo:latest"
+      name  = "bad-app"
+    }
+  }
+}
+
+resource "kubernetes_service" "vuln-k8-deployment" {
+  metadata 
+    name      = "vuln-k8"
+    namespace = kubernetes_namespace.vuln-k8.metadata.0.name
+  }
+
+  spec {
+    selector {
+      name = "${kubernetes_pod.vuln-k8.metadata.0.labels.name}"
+    }
+
+    session_affinity = "ClientIP"
+
+    port {
+      port        = 80
+      target_port = 80
+    }
+
+    type = "LoadBalancer"
+  }
+}
+
+/*
 resource "kubernetes_deployment" "vuln-k8-deployment" {
   metadata {
     name                   = "vuln-k8"
@@ -91,6 +133,7 @@ resource "kubernetes_deployment" "vuln-k8-deployment" {
       }
     }
   }
+  */
 }
 
 resource "kubernetes_service" "vuln-k8-service" {
