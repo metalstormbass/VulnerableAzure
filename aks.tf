@@ -77,7 +77,7 @@ resource "kubernetes_service" "vuln-k8-deployment" {
 
   spec {
     selector {
-      name = "${kubernetes_pod.vuln-k8.metadata.0.labels.name}"
+      name = kubernetes_pod.vuln-k8.metadata.0.labels.name
     }
 
     session_affinity = "ClientIP"
@@ -137,7 +137,6 @@ resource "kubernetes_deployment" "vuln-k8-deployment" {
 }
 
 
-/*
 resource "kubernetes_service" "vuln-k8-service" {
   metadata {
     name                   = "vuln-k8"
@@ -154,3 +153,4 @@ resource "kubernetes_service" "vuln-k8-service" {
     type                   = "LoadBalancer"
   }
 }
+*/
