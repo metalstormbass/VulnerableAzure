@@ -97,7 +97,7 @@ resource "kubernetes_deployment" "vuln-k8-deployment" {
 }
 
 
-resource "kubernetes_service" "vuln_k8_service" {
+resource "kubernetes_service" "vuln-k8-service" {
   metadata {
     name                   = "vuln-k8"
     namespace              = "vuln-k8"
