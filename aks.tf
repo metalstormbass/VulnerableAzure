@@ -100,7 +100,7 @@ resource "kubernetes_deployment" "vuln-k8-deployment" {
 resource "kubernetes_service" "vuln-k8-service" {
   metadata {
     name                   = "vulnk8"
-    namespace              = kubernetes_namespace.vuln-k8.metadata.0.name
+    namespace              = kubernetes_namespace.vulnk8.metadata.0.name
   }
   spec {
     selector               = {
