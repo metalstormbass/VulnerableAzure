@@ -45,7 +45,7 @@ provider "kubernetes" {
 
 
 
-resource "kubernetes_namespace" "vuln-k8" {
+resource "kubernetes_namespace" "vulnk8" {
   metadata {
     name                   = "vulnk8"
   }
@@ -55,7 +55,7 @@ resource "kubernetes_namespace" "vuln-k8" {
 resource "kubernetes_deployment" "vuln-k8-deployment" {
   metadata {
     name                   = "vulnk8"
-    namespace              = "vulnk8"
+    namespace              = kubernetes_namespace.vulnk8.metadata.0.name
     labels                 = {
       app                  = "vulnk8"
     }
@@ -100,7 +100,7 @@ resource "kubernetes_deployment" "vuln-k8-deployment" {
 resource "kubernetes_service" "vuln-k8-service" {
   metadata {
     name                   = "vulnk8"
-    namespace              = "vulnk8"
+    namespace              = kubernetes_namespace.vuln-k8.metadata.0.name
   }
   spec {
     selector               = {
