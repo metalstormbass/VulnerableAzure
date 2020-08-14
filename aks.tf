@@ -77,7 +77,7 @@ resource "kubernetes_service" "vuln-k8-service" {
 
   spec {
     selector = {
-      name = kubernetes_pod.vuln-k8.metadata.0.labels.name
+      name = kubernetes_pod.vuln-k8-deployment.metadata.0.labels.name
     }
 
     session_affinity = "ClientIP"
