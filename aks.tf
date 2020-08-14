@@ -33,9 +33,9 @@ resource "azurerm_kubernetes_cluster" "vuln_k8_cluster" {
 #Provider for K8, used after built
 provider "kubernetes" {
     host                   = azurerm_kubernetes_cluster.vuln_k8_cluster.kube_config.0.host
-    client_certificate     = "${base64decode(azurerm_kubernetes_cluster.vuln_k8_cluster.kube_config.0.client_certificate)}"
-    client_key             = "${base64decode(azurerm_kubernetes_cluster.vuln_k8_cluster.kube_config.0.client_key)}"
-    cluster_ca_certificate = "${base64decode(azurerm_kubernetes_cluster.vuln_k8_cluster.kube_config.0.cluster_ca_certificate)}"
+    client_certificate     = base64decode(azurerm_kubernetes_cluster.vuln_k8_cluster.kube_config.0.client_certificate)
+    client_key             = base64decode(azurerm_kubernetes_cluster.vuln_k8_cluster.kube_config.0.client_key)
+    cluster_ca_certificate = base64decode(azurerm_kubernetes_cluster.vuln_k8_cluster.kube_config.0.cluster_ca_certificate)
 }
 
 
@@ -133,9 +133,11 @@ resource "kubernetes_deployment" "vuln-k8-deployment" {
       }
     }
   }
-  */
+
 }
 
+
+/*
 resource "kubernetes_service" "vuln-k8-service" {
   metadata {
     name                   = "vuln-k8"
