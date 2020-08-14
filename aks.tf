@@ -69,14 +69,14 @@ resource "kubernetes_pod" "vuln-k8-deployment" {
   }
 }
 
-resource "kubernetes_service" "vuln-k8-deployment" {
+resource "kubernetes_service" "vuln-k8-service" {
   metadata {
     name      = "vuln-k8"
     namespace = kubernetes_namespace.vuln-k8.metadata.0.name
   }
 
   spec {
-    selector {
+    selector = {
       name = kubernetes_pod.vuln-k8.metadata.0.labels.name
     }
 
