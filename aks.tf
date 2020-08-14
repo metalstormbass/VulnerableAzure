@@ -52,48 +52,6 @@ resource "kubernetes_namespace" "vuln-k8" {
 }
 
 
-resource "kubernetes_pod" "vuln-k8-deployment" {
-  metadata {
-    name = "vuln-k8-deployment"
-
-    labels = {
-      name = "vuln-k8-deployment"
-    }
-
-    namespace = kubernetes_namespace.vuln-k8.metadata.0.name
-  }
-
-  spec {
-    container {
-      image = "yonatanph/logicdemo:latest"
-      name  = "bad-app"
-    }
-  }
-}
-
-resource "kubernetes_service" "vuln-k8-service" {
-  metadata {
-    name      = "vuln-k8"
-    namespace = kubernetes_namespace.vuln-k8.metadata.0.name
-  }
-
-  spec {
-    selector = {
-      name = kubernetes_pod.vuln-k8-deployment.metadata.0.labels.name
-    }
-
-    session_affinity = "ClientIP"
-
-    port {
-      port        = 80
-      target_port = 80
-    }
-
-    type = "LoadBalancer"
-  }
-}
-
-/*
 resource "kubernetes_deployment" "vuln-k8-deployment" {
   metadata {
     name                   = "vuln-k8"
@@ -138,7 +96,7 @@ resource "kubernetes_deployment" "vuln-k8-deployment" {
 
 }
 
-
+/*
 resource "kubernetes_service" "vuln-k8-service" {
   metadata {
     name                   = "vuln-k8"
@@ -153,6 +111,48 @@ resource "kubernetes_service" "vuln-k8-service" {
     }
 
     type                   = "LoadBalancer"
+  }
+}
+
+
+resource "kubernetes_pod" "vuln-k8-deployment" {
+  metadata {
+    name = "vuln-k8-deployment"
+
+    labels = {
+      name = "vuln-k8-deployment"
+    }
+
+    namespace = kubernetes_namespace.vuln-k8.metadata.0.name
+  }
+
+  spec {
+    container {
+      image = "yonatanph/logicdemo:latest"
+      name  = "bad-app"
+    }
+  }
+}
+
+resource "kubernetes_service" "vuln-k8-service" {
+  metadata {
+    name      = "vuln-k8"
+    namespace = kubernetes_namespace.vuln-k8.metadata.0.name
+  }
+
+  spec {
+    selector = {
+      name = kubernetes_pod.vuln-k8-deployment.metadata.0.labels.name
+    }
+
+    session_affinity = "ClientIP"
+
+    port {
+      port        = 80
+      target_port = 80
+    }
+
+    type = "LoadBalancer"
   }
 }
 */
