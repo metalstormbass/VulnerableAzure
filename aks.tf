@@ -54,10 +54,10 @@ resource "kubernetes_namespace" "vuln-k8" {
 
 resource "kubernetes_deployment" "vuln-k8-deployment" {
   metadata {
-    name                   = "vuln-k8"
-    namespace              = "vuln-k8"
+    name                   = "vulnk8"
+    namespace              = "vulnk8"
     labels                 = {
-      app                  = "vuln-k8"
+      app                  = "vulnk8"
     }
   }
 
@@ -66,14 +66,14 @@ resource "kubernetes_deployment" "vuln-k8-deployment" {
 
     selector {
       match_labels         = {
-        app                = "vuln-k8"
+        app                = "vulnk8"
       }
     }
 
     template {
       metadata {
         labels             = {
-          app              = "vuln-k8"
+          app              = "vulnk8"
         }
       }
 
@@ -99,12 +99,12 @@ resource "kubernetes_deployment" "vuln-k8-deployment" {
 
 resource "kubernetes_service" "vuln-k8-service" {
   metadata {
-    name                   = "vuln-k8"
-    namespace              = "vuln-k8"
+    name                   = "vulnk8"
+    namespace              = "vulnk8"
   }
   spec {
     selector               = {
-      app                  = "vuln-k8"
+      app                  = "vulnk8"
     }
     port {
       port                 = 80
