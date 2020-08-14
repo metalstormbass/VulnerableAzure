@@ -40,9 +40,6 @@ output "cluster_password" {
     value = "${azurerm_kubernetes_cluster.vuln_k8_cluster.kube_config.0.password}"
 }
  
-output "kube_config" {
-    value = "${azurerm_kubernetes_cluster.vuln_k8_cluster.kube_config_raw}"
-}
  
 output "host" {
     value = "${azurerm_kubernetes_cluster.vuln_k8_cluster.kube_config.0.host}"
