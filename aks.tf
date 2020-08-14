@@ -27,9 +27,28 @@ resource "azurerm_kubernetes_cluster" "vuln_k8_cluster" {
 }
 
 
+
+#Authenticate to Terraform Kubernetes Module
+
+#Provider for K8, used after built
+provider "kubernetes" {
+  host                   = azurerm_kubernetes_cluster.vuln_k8_cluster.kube_config.0.host
+  username               = azurerm_kubernetes_cluster.vuln_k8_cluster.kube_config.0.username
+  password               = azurerm_kubernetes_cluster.vuln_k8_cluster.kube_config.0.password
+  client_certificate     = base64decode(azurerm_kubernetes_cluster.vuln_k8_cluster.kube_config.0.client_certificate)
+  client_key             = base64decode(azurerm_kubernetes_cluster.vuln_k8_cluster.kube_config.0.client_key)
+  cluster_ca_certificate = base64decode(azurerm_kubernetes_cluster.vuln_k8_cluster.kube_config.0.cluster_ca_certificate)
+
+depends_on = [
+    azurerm_kubernetes_cluster.vuln_k8_cluster
+  ]
+
+}
+
+
 #Perform Configuration on K8 cluster itself
 
-/*
+
 
 resource "kubernetes_namespace" "vuln-k8" {
   metadata {
@@ -97,5 +116,3 @@ resource "kubernetes_service" "vuln-k8-service" {
     type                   = "LoadBalancer"
   }
 }
-
-*/
