@@ -4,6 +4,7 @@
 variable "victim_company" {
   type        = string
   description = "This is the main naming convention for objects within Azure"
+  default="VulnAZEnv"
 }
 
 # azure region
@@ -19,29 +20,33 @@ variable "location" {
 variable "victim-network-vnet-cidr" {
   type        = string
   description = "VNET"
+  default = "10.78.0.0/16"
 }
 
-# victim vnet cidr
+# victim subnet cidr
 variable "victim-network-subnet-cidr" {
   type        = string
   description = "Subnet"
+  default = "10.78.0.0/24"
 }
 
 # victim vm private ip
 variable "internal-private-ip" {
   type        = string
   description = "Victim Private IP"
+  default = "10.78.10.10"
 }
 
 # blob private ip
 variable "blob-internal-private-ip" {
   type        = string
   description = "Blob Private IP"
+  default "10.78.10.20"
 }
 
 ##################### Secure Access #####################
 
-# Source IP - CHANGE THIS
+# Source IP - CHANGE THIS FOR SECURITY REASONS
 variable "source-ip" {
   type        = string
   description = "Only IP Address to access Vulnerable Web App"
@@ -83,14 +88,16 @@ variable "password" {
 variable "nodecount" {
   type        = string
   description = "Kubernetes Node Count"
+  default = "2"
 }
 
-#Client ID from Azure
+#Client ID from Azure (App Registration)
 variable "client_id" {
   type        = string
   description = "Client ID from Azure for K8"
 }
 
+#Client Secret From Azure (App Registration)
 variable "client_secret" {
   type        = string
   description = "Client secret from Azure for K8"
