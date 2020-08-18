@@ -41,7 +41,7 @@ variable "internal-private-ip" {
 variable "blob-internal-private-ip" {
   type        = string
   description = "Blob Private IP"
-  default "10.78.10.20"
+  default = "10.78.10.20"
 }
 
 ##################### Secure Access #####################
