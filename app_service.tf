@@ -14,7 +14,7 @@ resource "azurerm_app_service" "vulnerablewebapp_appservice" {
   location            = azurerm_resource_group.victim-network-rg.location
   resource_group_name = azurerm_resource_group.victim-network-rg.name
   app_service_plan_id = azurerm_app_service_plan.vulnerablewebapp_serviceplan.id
-  kind                = "Linux"
+ 
 
   site_config {
     always_on                 = "true"
@@ -26,7 +26,7 @@ resource "azurerm_app_service" "vulnerablewebapp_appservice" {
   }
   
   source_control = {
-  repo_url = "https://github.com/metalstormbass/VulnerableWebApp"
+  repo_url = ["https://github.com/metalstormbass/VulnerableWebApp"]
   }
 
 }
