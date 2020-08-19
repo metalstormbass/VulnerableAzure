@@ -26,7 +26,7 @@ resource "azurerm_app_service" "vulnerablewebapp_appservice" {
   }
   
   source_control = {
-  repo_url = ["https://github.com/metalstormbass/VulnerableWebApp"]
+  repo_url = [github.com/metalstormbass/VulnerableWebApp]
   }
 
 }
