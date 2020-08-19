@@ -3,7 +3,6 @@ resource "azurerm_app_service_plan" "vulnerablewebapp_serviceplan" {
   name                = "${var.victim_company}-app"
   location            = azurerm_resource_group.victim-network-rg.location
   resource_group_name = azurerm_resource_group.victim-network-rg.name
-
   sku {
     tier = "Standard"
     size = "S1"
@@ -18,15 +17,12 @@ resource "azurerm_app_service" "vulnerablewebapp_appservice" {
   app_service_plan_id = azurerm_app_service_plan.vulnerablewebapp_serviceplan.id
  
 
-  site_config {
-    always_on                 = "true"
-    dotnet_framework_version = "v4.0"
-    python_version           = "3.4"
-    scm_type = "ExternalGit"
+ site_config {
+    linux_fx_version = "PYTHON|3.7"
+    use_32_bit_worker_process = false
   }
 
-  source_control {
-    repo_url = "https://github.com/metalstormbass/VulnerableWebApp"
-    branch   = "master"  
+  provisioner "local-exec" {
+   command = "git clone https://github.com/metalstormbass/VulnerableWebApp.git"
   }
 }
