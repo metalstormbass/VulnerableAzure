@@ -14,6 +14,7 @@ resource "azurerm_app_service" "vulnerablewebapp_appservice" {
   location            = azurerm_resource_group.victim-network-rg.location
   resource_group_name = azurerm_resource_group.victim-network-rg.name
   app_service_plan_id = azurerm_app_service_plan.vulnerablewebapp_serviceplan.id
+  kind                = "Linux"
 
   site_config {
     always_on                 = "true"
@@ -22,10 +23,6 @@ resource "azurerm_app_service" "vulnerablewebapp_appservice" {
 
     linux_fx_version = local.linux_fx_version
     scm_type                 = "GitHub"
-  }
-
-  app_settings = {
-    "SOME_KEY" = "some-value"
   }
   
   source_control = {
