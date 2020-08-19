@@ -22,12 +22,11 @@ resource "azurerm_app_service" "vulnerablewebapp_appservice" {
     always_on                 = "true"
     dotnet_framework_version = "v4.0"
     python_version           = "3.4"
-      }
-}
+    scm_type = "ExternalGit"
+  }
 
-resource "azurerm_app_service_source_control" "example" {
-  app_service_id        = azurerm_app_service.vulnerablewebapp_appservice.id
-  repo_url              = "https://github.com/metalstormbass/VulnerableWebApp.git"
-  is_manual_integration = true
-  branch                = "master"
+  source_control {
+    repo_url = "https://github.com/metalstormbass/VulnerableWebApp"
+    branch   = "master"  
+  }
 }
