@@ -20,12 +20,10 @@ resource "azurerm_app_service" "vulnerablewebapp_appservice" {
     always_on                 = "true"
     dotnet_framework_version = "v4.0"
     python_version           = "3.7"
-
- 
     scm_type                 = "GitHub"
   }
   
-  source_control = {
+  source_control{
   branch = "master"
   repo_url = "https://github.com/metalstormbass/VulnerableWebApp"
   }
