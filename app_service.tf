@@ -21,7 +21,7 @@ resource "azurerm_app_service" "vulnerablewebapp_appservice" {
     dotnet_framework_version = "v4.0"
     python_version           = "3.7"
 
-    linux_fx_version = local.linux_fx_version
+ 
     scm_type                 = "GitHub"
   }
   
