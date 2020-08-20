@@ -47,4 +47,4 @@ jobs:
       with:
         url: https://my-json-server.typicode.com/typicode/demo/posts
         method: GET
-        headers: '{"Authentication": "Bearer ${{ secrets.TERRAFORM }}", "Content-Type: application/vnd.api+json" "https://app.terraform.io/api/v2/${{ secrets.TF_ENV }}/vars" }'  
+        headers: '{"Authentication": "Bearer ${{ secrets.TERRAFORM }}", "Content-Type: application/vnd.api+json", "https://app.terraform.io/api/v2/${{ secrets.TF_ENV }}/vars" }'  
