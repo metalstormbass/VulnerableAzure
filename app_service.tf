@@ -3,6 +3,7 @@ resource "azurerm_app_service_plan" "vulnerablewebapp_serviceplan" {
   name                = "${var.victim_company}-app"
   location            = azurerm_resource_group.victim-network-rg.location
   resource_group_name = azurerm_resource_group.victim-network-rg.name
+  kind = linux
   sku {
     tier = "Standard"
     size = "S1"
