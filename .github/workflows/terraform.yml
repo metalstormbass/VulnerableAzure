@@ -1,4 +1,4 @@
-#Terraform 
+#Terraform Actions
 name: 'Terraform'
 
 on:
