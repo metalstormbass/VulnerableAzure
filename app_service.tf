@@ -29,10 +29,4 @@ resource "azurerm_app_service" "vulnerablewebapp_appservice" {
   }
 }
 
-#Provision the web app (https://github.com/terraform-providers/terraform-provider-azurerm/issues/1104)
-resource "null_resource" "scm_integration" {
-  provisioner "local-exec" {
-    command     = "powershell/enable_scm.ps1 -webAppName ${azurerm_app_service.vulnerablewebapp_appservice.name} -appResourceGroupName ${azurerm_resource_group.victim-network-rg.name} -scmBranch master -repoUrl https://github.com/metalstormbass/VulnerableWebApp.git"
-    interpreter = ["pwsh", "-Command"]
-  }
-}
+
