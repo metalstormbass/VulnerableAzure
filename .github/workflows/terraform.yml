@@ -43,8 +43,8 @@ jobs:
     #  run: terraform apply -auto-approve
 
     - name: Get App Variable Name
-      uses: satak/webrequest-action@master
+      uses: fjogeleit/http-request-action@master
       with:
-        url: https://my-json-server.typicode.com/typicode/demo/posts
-        method: GET
-        headers: '{"Authentication": "Bearer ${{ secrets.TERRAFORM }}", "Content-Type: application/vnd.api+json", "https://app.terraform.io/api/v2/${{ secrets.TF_ENV }}/vars" }'  
+        url: 'https://app.terraform.io/api/v2/${{ secrets.TF_ENV }}/vars'
+        method: 'GET'
+        customHeaders :'{"Authentication": "Bearer ${{ secrets.TERRAFORM }}", "Content-Type: application/vnd.api+json"}'  
