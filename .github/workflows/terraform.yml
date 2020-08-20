@@ -42,11 +42,9 @@ jobs:
     #  if: github.ref == 'refs/heads/master' && github.event_name == 'push'
     #  run: terraform apply -auto-approve
 
-    - name: Get Variable Name
+    - name: Get App Variable Name
       uses: satak/webrequest-action@master
-      env:
-       TF_ENV: ws-3pcvGFNiVA6d4xSe 
       with:
         url: https://my-json-server.typicode.com/typicode/demo/posts
         method: GET
-        headers: '{"Authentication": "Bearer ${{ secrets.TERRAFORM }}", "Content-Type: application/vnd.api+json" "https://app.terraform.io/api/v2/${{ env.TF_ENV }}/vars" }'  
+        headers: '{"Authentication": "Bearer ${{ secrets.TERRAFORM }}", "Content-Type: application/vnd.api+json" "https://app.terraform.io/api/v2/${{ secrets.TF_ENV }}/vars" }'  
