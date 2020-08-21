@@ -47,5 +47,10 @@ jobs:
            out=$(curl --header "Authorization: Bearer ${{ secrets.TERRAFORM }}" --header "Content-Type: application/vnd.api+json" ${{ secrets.TF_ENV }} | jq -c --arg key "victim-company" '.data[].attributes | select (.key=="victim_company") | .value')
            out=$(echo $out | tr -d \")
            out="$out-app-service"
-           echo $out
+           echo ::set-env name=APP_NAME::$(echo $out)
+           
+    - name: TEST 
+      run: |
+           echo ${{ env.APP_NAME }}
+           
            
