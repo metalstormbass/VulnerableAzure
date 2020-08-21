@@ -44,6 +44,5 @@ jobs:
 
     - name: Get App Variable Name
       run: |
-          curl --header "Authorization: Bearer ${{ secrets.TERRAFORM }} --header "Content-Type: application/vnd.api+json" "https://app.terraform.io/api/v2/workspaces/ws-3pcvGFNiVA6d4xSe/vars" | jq -c --arg key "victim-company" '.data[].attributes | select (.key=="victim_company") | .value'
-
+          curl --header "Authorization: Bearer ${{ secrets.TERRAFORM }} --header "Content-Type: application/vnd.api+json" "https://app.terraform.io/api/v2/workspaces/ws-3pcvGFNiVA6d4xSe/vars" 
          
