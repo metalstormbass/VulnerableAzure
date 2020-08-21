@@ -29,8 +29,12 @@ resource "azurerm_app_service" "vulnerablewebapp_appservice" {
   }
 }
 
+<<<<<<< HEAD
 #Provision the web app
 rovisioner "remote-exec" {
     inline = [
 ]
   }
+=======
+
+>>>>>>> 3648ae456d1b68e3c25f7a5694d57e32e8301c64

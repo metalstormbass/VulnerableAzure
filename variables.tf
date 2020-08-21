@@ -1,11 +1,10 @@
 ##################### Azure Info ######################
 
-# victim company name 
+# victim company name
 variable "victim_company" {
   type        = string
   description = "This is the main naming convention for objects within Azure"
-  default="VulnAZEnv"
-}
+  }
 
 # azure region
 variable "location" {
