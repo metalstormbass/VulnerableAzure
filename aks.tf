@@ -16,7 +16,7 @@ resource "azurerm_kubernetes_cluster" "vuln_k8_cluster" {
     client_id     = var.client_id
     client_secret = var.client_secret
   }
-  
+
   network_profile {
     network_plugin     = "azure"
     network_policy     = "calico"     # Options are calico or azure - only if network plugin is set to azure
@@ -24,12 +24,12 @@ resource "azurerm_kubernetes_cluster" "vuln_k8_cluster" {
     docker_bridge_cidr = "172.17.0.1/16"
     service_cidr       = "172.16.0.0/16" # Must not overlap any address from the VNEt
   }
-  
+
   lifecycle {
     ignore_changes = [
       windows_profile,
     ]
-  
+
 }
 
 
@@ -162,5 +162,3 @@ resource "kubernetes_service" "vuln-k8-service" {
     type = "LoadBalancer"
   }
 }
-
-*/
