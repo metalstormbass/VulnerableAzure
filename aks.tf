@@ -29,7 +29,7 @@ resource "azurerm_kubernetes_cluster" "vuln_k8_cluster" {
     ignore_changes = [
       windows_profile,
     ]
-
+ }
 }
 
 
