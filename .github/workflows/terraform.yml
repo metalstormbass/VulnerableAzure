@@ -48,8 +48,8 @@ jobs:
            out=$(echo $out | tr -d \")
            out1="$out-app-service"
            out2="$out-rg"
-           echo ::set-env name=APP_NAME::$(echo $out)
-           echo ::set-env name=RG::$(echo $out)
+           echo ::set-env name=APP_NAME::$(echo $out1)
+           echo ::set-env name=RG::$(echo $out2)
            
     - name: Deploy app using AZ
       run: |
