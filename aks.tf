@@ -25,6 +25,11 @@ resource "azurerm_kubernetes_cluster" "vuln_k8_cluster" {
     service_cidr       = "172.16.0.0/16" # Must not overlap any address from the VNEt
   }
   
+  lifecycle {
+    ignore_changes = [
+      windows_profile,
+    ]
+  
 }
 
 
