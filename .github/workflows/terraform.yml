@@ -56,7 +56,7 @@ jobs:
            #Login to Azure
            echo ${{ env.RG }}
            az login  --service-principal -u ${{ secrets.AZ_ID }} -p ${{ secrets.AZ_SECRET }} -t ${{ secrets.AZ_TENANT }} 
-           az webapp deployment source config --name ${{ env.APP_NAME}} --resource-group ${{ env.RG }} --repo-url https://github.com/metalstormbass/VulnerableWebApp.git --branch master --startup-file /home/site/respository/VulnerableAzure/VulnerableAzure/VulnerableAzure/startup.sh
+           az webapp deployment source config --name ${{ env.APP_NAME}} --resource-group ${{ env.RG }} --repo-url https://github.com/metalstormbass/VulnerableWebApp.git --branch master --startup-file /VulnerableAzure/startup.sh
            
          
            
