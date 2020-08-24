@@ -53,6 +53,7 @@ jobs:
            out2="$out-rg"
            echo ::set-env name=APP_NAME::$(echo $out1)
            echo ::set-env name=RG::$(echo $out2)
+      
       #Use AZ to provision webapp     
     - name: Deploy app using AZ
       run: |
