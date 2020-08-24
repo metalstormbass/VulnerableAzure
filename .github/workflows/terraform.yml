@@ -1,5 +1,6 @@
-#Terraform Actions
-name: 'Terraform'
+#Github Actions to trigger Terraform Cloud and AZ
+
+name: 'Deploy Action'
 
 on:
   push:
