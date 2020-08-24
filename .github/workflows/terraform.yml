@@ -41,7 +41,7 @@ jobs:
     - name: Terraform Apply
       if: github.ref == 'refs/heads/master' && github.event_name == 'push'
       run: terraform apply -auto-approve
-
+      #API Call to Terraform.io to get app-services name
     - name: Get App Variable Name
       run: |
            out=$(curl --header "Authorization: Bearer ${{ secrets.TERRAFORM }}" --header "Content-Type: application/vnd.api+json" ${{ secrets.TF_ENV }} | jq -c --arg key "victim-company" '.data[].attributes | select (.key=="victim_company") | .value')
@@ -50,7 +50,7 @@ jobs:
            out2="$out-rg"
            echo ::set-env name=APP_NAME::$(echo $out1)
            echo ::set-env name=RG::$(echo $out2)
-           
+      #Use AZ to provision webapp     
     - name: Deploy app using AZ
       run: |
            #Login to Azure
