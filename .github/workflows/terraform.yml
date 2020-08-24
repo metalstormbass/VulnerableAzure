@@ -60,7 +60,7 @@ jobs:
            #Login to Azure
            echo ${{ env.RG }}
            az login  --service-principal -u ${{ secrets.AZ_ID }} -p ${{ secrets.AZ_SECRET }} -t ${{ secrets.AZ_TENANT }}
-           az webapp config set -g ${{ env.RG }} -n ${{ env.APP_NAME}} --startup-file /home/site/wwwroot/VulnerableAzure/startup.sh
+           az webapp config set -g ${{ env.RG }} -n ${{ env.APP_NAME}} --startup-file /home/site/repository/VulnerableWebApp/VulnerableWebApp/startup.sh
            az webapp deployment source config --name ${{ env.APP_NAME}} --resource-group ${{ env.RG }} --repo-url https://github.com/metalstormbass/VulnerableWebApp.git --branch master --manual-integration
          
            
