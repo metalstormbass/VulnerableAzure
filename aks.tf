@@ -1,10 +1,10 @@
 #Provision AKS cluster in Azure
 
 resource "azurerm_kubernetes_cluster" "vuln_k8_cluster" {
-  name                = "${var.vulnvm-name}-kubecluster"
+  name                = "${var.victim_company}-kubecluster"
   location            = azurerm_resource_group.victim-network-rg.location
   resource_group_name = azurerm_resource_group.victim-network-rg.name
-  dns_prefix          = "${var.vulnvm-name}-k8"
+  dns_prefix          = "${var.victim_company}-k8"
 
   default_node_pool {
     name       = "default"
