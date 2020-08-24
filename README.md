@@ -45,7 +45,7 @@ Fork the [VulnerableAzure](https://github.com/metalstormbass/VulnerableAzure) re
 ### Terraform
 Create a new workspace in your Orginization and select CLI-driven run. The configure your variables.
 
-![](images/terraform1.PNG)
+![](images/terraform1.png)
 
 Start with the Environment Variables. Input the Azure App Registration information you noted earlier. Use the following keys.
 
