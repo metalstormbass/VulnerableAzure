@@ -1,4 +1,4 @@
-#Github Actions to trigger Terraform Cloud
+#Github Actions to trigger Terraform Cloud and provision using AZ
 
 name: 'Deploy Action'
 
