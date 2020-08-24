@@ -1,3 +1,19 @@
+##################### Terraform Info ##################
+# victim company name
+variable "organization_name" {
+  type        = string
+  description = "This must reflect the Organization you created in Terraform.io"
+  }
+
+
+
+# victim company name
+variable "workspace_name" {
+  type        = string
+  description = "This must reflect the workspace you created in Terraform.io"
+  }
+
+
 ##################### Azure Info ######################
 
 # victim company name
