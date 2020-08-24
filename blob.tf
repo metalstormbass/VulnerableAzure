@@ -25,4 +25,3 @@ resource "azurerm_storage_blob" "victim-public-blob" {
 
 
 
-}
