@@ -16,7 +16,9 @@ The purpose of this project is to build an intentionally vulnerable environment 
 
 This is a first version, as it was also a way for me to learn about Azure, Terraform and Github Actions. 
 
-This is what the final result looks like in Azure
+Here is what this playbook will build:
+
+![](images/diagram.PNG)
 
 ## Prerequisites
 
