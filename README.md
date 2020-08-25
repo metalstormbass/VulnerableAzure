@@ -69,11 +69,11 @@ Under the user settings, select Tokens and create an API token. Note the value f
 Finally, in the workspace you created, click on Settings > General Settings and note the Workspace ID. We need to this to setup the API call to Terraform.io
 
 ### Github 
-Github Actions is used to 
+Github Actions is used to stich Terraform and AZ commands together.
 
 Select settings and add the following secrets to your repository:
 
-![](/images/github1.PNG)
+![](/images/github1.png)
 
 AZ_ID = Azure Client ID
 AZ_SECRET = Azure Client Secret
