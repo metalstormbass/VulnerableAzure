@@ -68,7 +68,7 @@ Select settings and add the following secrets to your repository:
 
 ![](/images/github1.PNG)
 
-
+Click on actions and enable workflows
 
 
 
