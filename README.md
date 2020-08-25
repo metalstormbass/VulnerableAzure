@@ -12,13 +12,17 @@ The purpose of this project is to build an intentionally vulnerable environment 
 
 1. Test offensive principles and tools against vulnerable Azure infrastructure
 
-2. Test defensive tools to evaluate their capabilities
+2. Test defensive tools to evaluate their capabilities in the Cloud and the CI/CD pipeline.
 
 This is a first version, as it was also a way for me to learn about Azure, Terraform and Github Actions. 
 
-Here is what this playbook will build:
+Here is crude diagram of what this playbook will build:
 
-![](images/diagram.PNG)
+![](images/diagram.png)
+
+All services are open and accessible to the internet.
+
+<b> DO NOT DEPLOY THIS IN A PRODUCTION ENVIRONMENT </b>
 
 ## Prerequisites
 
@@ -41,6 +45,7 @@ Fork the [VulnerableAzure](https://github.com/metalstormbass/VulnerableAzure) re
 - Secret
 - Subscription ID
 
+Ensure that you give this app registration "Contributor" permission. This is required for Terraform to build the environment.
 
 ### Terraform
 Create a new workspace in your Orginization and select CLI-driven run. The configure your variables.
