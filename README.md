@@ -79,7 +79,7 @@ AZ_ID = Azure Client ID<br>
 AZ_SECRET = Azure Client Secret<br>
 AZ_TENANT =  Directory(Tenant) ID<br>
 TERRAFORM = Terraform API token, created in last step<br>
-TF_ENV = https://app.terraform.io/api/v2/workspaces/INSERT YOUR WORKSPACE ID<br>
+TF_ENV = https://app.terraform.io/api/v2/workspaces/INSERT_YOUR_WORKSPACE_ID<br>
 
 Click on actions and enable workflows
 
