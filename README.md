@@ -42,10 +42,10 @@ Fork the [VulnerableAzure](https://github.com/metalstormbass/VulnerableAzure) re
 ### Microsoft Azure
  Create an App Registration in Azure. As this will be used multiple times, please note the following:
 
-- Application (client) ID
-- Directory (tenant) ID
-- Secret
-- Subscription ID
+- Application (client) ID <br>
+- Directory (tenant) ID <br>
+- Secret <br>
+- Subscription ID <br>
 
 Ensure that you give this app registration "Contributor" permission. This is required for Terraform to build the environment.
 
@@ -75,11 +75,11 @@ Select settings and add the following secrets to your repository:
 
 ![](/images/github1.png)
 
-AZ_ID = Azure Client ID
-AZ_SECRET = Azure Client Secret
-AZ_TENANT =  Directory(Tenant) ID
-TERRAFORM = Terraform API token, created in last step
-TF_ENV = https://app.terraform.io/api/v2/workspaces/INSERT YOUR WORKSPACE ID
+AZ_ID = Azure Client ID<br>
+AZ_SECRET = Azure Client Secret<br>
+AZ_TENANT =  Directory(Tenant) ID<br>
+TERRAFORM = Terraform API token, created in last step<br>
+TF_ENV = https://app.terraform.io/api/v2/workspaces/INSERT YOUR WORKSPACE ID<br>
 
 Click on actions and enable workflows
 
