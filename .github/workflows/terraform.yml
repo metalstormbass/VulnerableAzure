@@ -22,14 +22,31 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-   
+    # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+        cli_config_credentials_token: ${{ secrets.TERRAFORM }}
+
+    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+    - name: Terraform Init
+      run: terraform init
+
+    # Generates an execution plan for Terraform
+    - name: Terraform Plan
+      run: terraform plan
+
+      # On push to master, build or change infrastructure according to Terraform configuration files
+      # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
+    - name: Terraform Apply
+      if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+      run: terraform apply -auto-approve
+    
     
     
     #API Call to Terraform.io to get app-services name
     - name: Get App Variable Name
       run: |
-           echo ${{ secrets.TF_ENV }} >> test.txt
-           cat test.txt
            out=$(curl --header "Authorization: Bearer ${{ secrets.TERRAFORM }}" --header "Content-Type: application/vnd.api+json" ${{ secrets.TF_ENV }} | jq -c --arg key "victim-company" '.data[].attributes | select (.key=="victim_company") | .value')
            out=$(echo $out | tr -d \")
            out1="$out-app-service"
@@ -37,8 +54,22 @@ jobs:
            echo ::set-env name=APP_NAME::$(echo $out1)
            echo ::set-env name=RG::$(echo $out2)
       
-  
+      #Use AZ to provision webapp     
+    - name: Deploy app using AZ
+      run: |
+           #Login to Azure
+           echo ${{ env.RG }}
+           az login  --service-principal -u ${{ secrets.AZ_ID }} -p ${{ secrets.AZ_SECRET }} -t ${{ secrets.AZ_TENANT }}
+           az webapp deployment source config --name ${{ env.APP_NAME}} --resource-group ${{ env.RG }} --repo-url https://github.com/metalstormbass/VulnerableWebApp.git --branch master --manual-integration                     
+           az webapp config set -g ${{ env.RG }} -n ${{ env.APP_NAME}} --startup-file /home/site/wwwroot/VulnerableWebApp/startup.sh
+
            
+         
+           
+
+    
+   
+
          
            
 
