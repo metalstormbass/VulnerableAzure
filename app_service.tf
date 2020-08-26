@@ -18,11 +18,6 @@ resource "azurerm_app_service" "vulnerablewebapp_appservice" {
   resource_group_name = azurerm_resource_group.victim-network-rg.name
   app_service_plan_id = azurerm_app_service_plan.vulnerablewebapp_serviceplan.id
 
- lifecycle {
-        ignore_changes = [
-            site_config.0.scm_type
-        ]
-}
  site_config {
     linux_fx_version = "PYTHON|3.7"
     use_32_bit_worker_process = false

@@ -1,3 +1,5 @@
+#This info is required for Github Actions to trigger the Terraform Cloud Deployment
+
 terraform {
       backend "remote" {
          # The name of your Terraform Cloud organization.

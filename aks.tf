@@ -1,10 +1,10 @@
 #Provision AKS cluster in Azure
 
 resource "azurerm_kubernetes_cluster" "vuln_k8_cluster" {
-  name                = "${var.vulnvm-name}-kubecluster"
+  name                = "${var.victim_company}-kubecluster"
   location            = azurerm_resource_group.victim-network-rg.location
   resource_group_name = azurerm_resource_group.victim-network-rg.name
-  dns_prefix          = "${var.vulnvm-name}-k8"
+  dns_prefix          = "${var.victim_company}-k8"
 
   default_node_pool {
     name       = "default"
@@ -16,7 +16,7 @@ resource "azurerm_kubernetes_cluster" "vuln_k8_cluster" {
     client_id     = var.client_id
     client_secret = var.client_secret
   }
-  
+
   network_profile {
     network_plugin     = "azure"
     network_policy     = "calico"     # Options are calico or azure - only if network plugin is set to azure
@@ -24,7 +24,12 @@ resource "azurerm_kubernetes_cluster" "vuln_k8_cluster" {
     docker_bridge_cidr = "172.17.0.1/16"
     service_cidr       = "172.16.0.0/16" # Must not overlap any address from the VNEt
   }
-  
+
+  lifecycle {
+    ignore_changes = [
+      windows_profile,
+    ]
+ }
 }
 
 
@@ -113,49 +118,3 @@ resource "kubernetes_service" "vuln-k8-service" {
     type                   = "LoadBalancer"
   }
 }
-
-
-
-/*
-resource "kubernetes_pod" "vuln-k8-deployment" {
-  metadata {
-    name = "vuln-k8-deployment"
-
-    labels = {
-      name = "vuln-k8-deployment"
-    }
-
-    namespace = kubernetes_namespace.vuln-k8.metadata.0.name
-  }
-
-  spec {
-    container {
-      image = "yonatanph/logicdemo:latest"
-      name  = "bad-app"
-    }
-  }
-}
-
-resource "kubernetes_service" "vuln-k8-service" {
-  metadata {
-    name      = "vuln-k8"
-    namespace = kubernetes_namespace.vuln-k8.metadata.0.name
-  }
-
-  spec {
-    selector = {
-      name = kubernetes_pod.vuln-k8-deployment.metadata.0.labels.name
-    }
-
-    session_affinity = "ClientIP"
-
-    port {
-      port        = 80
-      target_port = 80
-    }
-
-    type = "LoadBalancer"
-  }
-}
-
-*/
