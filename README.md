@@ -60,7 +60,7 @@ Start with the Environment Variables. Input the Azure App Registration informati
 
 ![](/images/terraform2.PNG)
 
-Then fill in the variables required to run the Terraform playbook. Reuse the Azure App Registration client id and secret for the client_id and the client_secret variables.
+Then fill in the variables required to run the Terraform playbook. Reuse the Azure App Registration client id and secret for the client_id and the client_secret variables. <b>Note: You cannot have spaces or special characters. This is an Azure limitation</b>
 
 ![](/images/terraform3.PNG)
 
