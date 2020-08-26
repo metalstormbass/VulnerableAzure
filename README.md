@@ -65,6 +65,7 @@ Then fill in the variables required to run the Terraform playbook. Reuse the Azu
 ![](/images/terraform3.PNG)
 
 Under the user settings, select Tokens and create an API token. Note the value for later. 
+![](/images/terraform4.PNG)
 
 Finally, in the workspace you created, click on Settings > General Settings and note the Workspace ID. We need to this to setup the API call to Terraform.io
 
