@@ -24,8 +24,6 @@ All services are open and accessible to the internet.
 
 <b> DO NOT DEPLOY THIS IN A PRODUCTION ENVIRONMENT </b>
 
-Finally, because this uses Github Actions as a CI/CD delivery tool, <b>every commit will run the Github Action</b>
-
 ## Prerequisites
 
 [Github Account](https://github.com) <br>
@@ -80,7 +78,7 @@ AZ_ID = Azure Client ID<br>
 AZ_SECRET = Azure Client Secret<br>
 AZ_TENANT =  Directory(Tenant) ID<br>
 TERRAFORM = Terraform API token, created in last step<br>
-TF_ENV = https://app.terraform.io/api/v2/workspaces/INSERT_YOUR_WORKSPACE_ID/vars<br>
+TF_ENV = Your Workspace ID <br>
 
 Click on actions and enable workflows
 
@@ -104,7 +102,8 @@ terraform {
        }
      }
 ```
-Once you commit the change, the Github Action will start running immediately. Click on the action tab, open the latest run and watch the progress.
+
+<b> To start building the environment, commit an empty file called _build_flag</b>
 
 The output information for your environment will be located under the Terraform Apply section. Scroll down to the bottom to see it.
 
