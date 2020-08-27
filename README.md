@@ -103,7 +103,7 @@ terraform {
      }
 ```
 
-<b> To start building the environment, commit an empty file called _build_flag</b>
+<b> To start building the environment, commit an empty file called _build_flag. Any changes to this file will trigger a build.</b>
 
 The output information for your environment will be located under the Terraform Apply section. Scroll down to the bottom to see it.
 
