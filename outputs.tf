@@ -3,7 +3,7 @@ output "Company_Name" {
 }
 
 output "k8_service_url" {
-  value ="${kubernetes_service.vuln-k8-service.load_balancer_ingress}"
+  value ="${kubernetes_service.vuln-k8-service.status[0].load_balancer[0].ingress[0]}"
 }
 
 output "app_service_name" {
