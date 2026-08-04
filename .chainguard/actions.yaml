@@ -1,0 +1,7 @@
+# Chainguard Guardener — Hardened Actions
+# Posts hardened-action recommendations on PRs that touch workflows, and
+# maintains a weekly PR migrating actions to SHA-pinned Chainguard equivalents.
+enabled: true
+migrate:
+  enabled: true
+  period: "168h"
